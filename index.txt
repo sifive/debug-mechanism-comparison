@@ -16,6 +16,11 @@ GPRs and CSRs are accessed directly on a Debug Bus. This is known as the Direct
 design. (Historically, this has also been referred to as ROA Logic/Richard
 Herveille/Lightweight/one on the left.)
 
+This document lives at https://sifive.github.io/debug-mechanism-comparison/
+
+If you'd like to contribute, the git repository is at
+https://github.com/sifive/debug-mechanism-comparison
+
 == Background
 
 === Goals
