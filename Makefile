@@ -1,4 +1,4 @@
-HTML=debug-mechanism-comparison.html
+HTML=index.html
 
 all:	$(HTML)
 
