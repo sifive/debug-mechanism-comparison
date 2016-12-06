@@ -1,0 +1,298 @@
+= RISC-V Core Debug Mechanism Comparison
+Tim Newsome <tim@sifive.com>
+v0.1, Dec 6, 2016
+:toc:
+
+== Introduction
+
+The Debug Task Group is discussing two competing debug proposals. The main
+difference between the specs is the core debug mechanic. One proposal revolves
+around having the core execute instructions to implement all debugging. This is
+known as Instruction design. (Historically, this has also been referred to
+as SiFive/Tim Newsome/Full-Featured/one on the right.)
+
+The other proposal defines a slightly more abstract interface where logically
+GPRs and CSRs are accessed directly on a Debug Bus. This is known as the Direct
+design. (Historically, this has also been referred to as ROA Logic/Richard
+Herveille/Lightweight/one on the left.)
+
+== Background
+
+=== Goals
+
+The primary purpose of external debug is to allow a user to connect a debugger
+running on their computer to a target system that is unable to debug the
+software that is running there.  After connecting the user should have full
+access to the target’s resources, with the ability to download and execute
+code, set breakpoints, access registers, and access memory.
+
+The spec must describe how debug hardware behaves in such a way that software
+written to debug one RISC-V system will also work to debug another.
+
+=== Metrics
+
+The following is a list of metrics that should be considered when evaluating a
+debug solution. These are in rough order from most important to least
+important, but not everybody will agree with any given ranking:
+
+Ease of hardware implementation::
+    How easy it to implement the spec in hardware?
+Hardware cost::
+    How many gates does the implementation require?
+Scalability::
+    How well does the design scale across all RISC-V core options, including
+    number of harts, configurations (RV32E--RV128), standard and custom extensions,
+    and compressed and extended instruction sets.
+Security::
+    What are the security implications?
+Speed of debugging::
+    How much (wall) time does it take to perform basic debug operations?
+Ease of software implementation::
+    How easy is it to write a debugger that communicates with the hardware?
+Quick access::
+    What is the impact on a running system if the debugger needs to access a
+    single word in memory, or a single CSR? This could be used to eg. sample a
+    counter or set a breakpoint on a system that cannot safely be halted for any
+    length of time.
+Usefulness for self-hosted debug::
+    Are the hardware features added for external debug useful to help software
+    on the core debug itself?
+Usefulness for hardware bringup::
+    How useful is the interface when bringing up hardware? This is not a
+    requirement per the goals, but certainly a nice-to-have.
+
+== Instruction Design
+
+=== Overview
+
+image::overview.png[Instruction Design Overview]
+
+When a hart halts (because it's interrupted by the debugger or hits a
+breakpoint), it starts fetching instructions from the DM. The DM communicates
+this to the debugger, which feeds instructions. Data is exchanged by the hart
+writing to special CSRs or using a memory-mapped interface. Below is an example
+of what the debugger does to read memory.
+
+.Read from memory
+|===
+|Using CSRs |Using memory-mapped interface
+
+a|1. Push `csrr s0, daccess32`
+2. Push address to read from
+3. Push `lw s0, 0(s0)`
+4. Push `csrw s0, daccess32`
+5. Read data the hart wrote to the DM
+a|1. Push `lw s0, 0x400(zero)`
+2. Push address to read from
+3. Push `lw s0, 0(s0)`
+4. Push `sw s0, 0x400(s0)`
+5. Read data the hart wrote to the DM
+|===
+
+The optional Instruction Buffer and Scratch RAM can be used to set up this
+action without any interaction (steps 2 and 5 use Scratch RAM). This enables a
+debugger to perform actions while halting the core just briefly.
+
+The Instruction Buffer is also important in achieving fast download speeds.
+
+=== Rationale
+
+The debugger should be able to access anything that software can access.
+Instead of adding extra data path logic to make that happen, the simplest way
+is to allow the debugger to execute instructions on the core. That's sufficient
+for all debugging, including custom/future extensions.
+
+== Direct Design
+
+=== Rationale
+
+One of the beauties of the RISC-V spec is that it’s implementation independent.
+It defines the feature set and the requirements, but leaves the implementation
+up to the user (implementer).  The debug specification should follow the same
+route. It should describe the base and extensions registers and leave the
+actual implementation up to the user.
+
+There are many ways to implement this specification, e.g. using a debug
+RAM/ROM, stalling the entire execution pipeline (for tiny implementations), or
+stalling the current hart while keeping the execution units running in a multi-
+threaded implementation.
+
+=== Considerations
+
+The main considerations while writing the Lightweight spec:
+
+1. The specification should be interface agnostic.
+2. It should use a very simple interface
+3. It should have minimal implications on the implementation of the actual CPU.
+4. Reset, Halt, Single Step, Hardware Breakpoints, Address breakpoints,
+    Interrupt catching should all be supported.
+
+== Comparison
+
+In each of the tables below, Memory-Mapped is on the left, and Instruction is
+on the right.
+
+.Ease of hardware implementation
+[cols="2*"]
+|===
+|Simple for simple designs, where the debugger reaches directly into the GPR
+and CSR files. When designs get more complex (out-of-order execution, register
+renaming), PC/GPRs may not exist in a single place.  Implementing this
+interface in terms of instruction feeding is one option to deal with that.
+|Simple for simple designs. The DM can reach directly into the core to push
+instructions and exchange data. More complex for more complex designs. In that
+case the simple implementation is to have the DM be memory-mapped, so the
+processor can fetch instructions and perform accesses as usual even when
+halted.
+|===
+
+.Hardware cost
+[cols="2*"]
+|===
+|Per hart: 629 LUTs and 264 DFF. This is for a full featured debug unit, with 3
+hardware breakpoints
+
+JTAG/Debug interface: 1180LUTs and 815DFFs. This is not really a fair
+comparison as my jtag/debug interface handles burst mode accesses (it can read
+an entire address range in one burst), handles multiple harts, and has a JSP
+(emulated serial port).
+
+|SiFive Coreplex: 3,900 gates plus 600 gates per hart (RV32, no triggers)
+
+IQ-Analog NanoRisc5: 628 flops plus 1479 LUTs for one RV32, no triggers
+
+Numbers include everything from JTAG TAP down to core changes.
+|===
+
+.Scalability
+[cols="2*"]
+|===
+|If core registers are added (eg. vector), debug address space needs to be
+reserved, and hardware needs to be taught how to access the registers.
+
+The spec can be easily be extended to RV32/RV64/RV128.
+|As long as any new state that's added can be moved into GPRs, then the debug
+hardware does not need to be modified.
+
+The spec already takes RV32/RV64/RV128 into account.
+|===
+
+.Security
+[cols="2*"]
+|===
+|No clear security impact.
+|No clear security impact. The spec does mention options for authenticating a
+debug user.
+|===
+
+.Speed of debugging
+[cols="2*"]
+|===
+|Should be equivalent.
+|Download speed reported by gdb using 10MHz TCK, talking USB from inside a VM
+to an Olimex USB-JTAG adapter: +
+Start address 0x80000000, load size 16100 +
+Transfer rate: 121 KB/sec, 4025 bytes/write. +
+|===
+
+.Ease of software implementation
+[cols="2*"]
+|===
+|Should be easy.
+|Basic debugging is easy. Making the debugger perform well will require some
+careful coding.
+|===
+
+.Quick access
+[cols="2*"]
+|===
+|Can be implemented in hardware, but will require a second port to register
+files, or some way to stall the processor while a value is accessed.
+|With optional Instruction Buffer and Scratch RAM in the Debug Module, a
+debugger can set up arbitrary short instruction sequences to be execute as fast
+as the processor can manage.
+|===
+
+.Usefulness for self-hosted debug
+[cols="2*"]
+|===
+|A hart can access its own debug resources if it has access to the debug bus,
+but there doesn't seem to be a way to trap instead of stall. Once stalled the
+hart cannot revive itself.
+|Software breakpoints and hardware triggers can be used. Needs work for single
+step.
+|===
+
+.Usefulness for hardware bringup
+[cols="2*"]
+|===
+|In direct implementations, it's likely still possible to access GPRs and CSRs
+even when there are other issues with the core.
+|If the core cannot execute instructions, it's not possible to debug it in any
+useful fashion.
+|===
+
+//.Old Comparison
+//|All configuration registers are contained in the Hart’s Debug Unit.
+//Core additions:
+//Support Halt/Reset signal for each Hart
+//Provide access to CSRs and RegisterFile from Debug Unit
+//Slave to Debug Bus
+//
+//|Per-hart logic: (github)
+//New execution mode (Debug Mode)
+//3 CSRs (dcsr, dpc, dscratch)
+//Interrupt signal from Debug Module
+//Reset signal controllable by Debug Module
+//2 status bits in Debug Module
+//
+//|Shared functionality (Debug Module):
+//Debug Bus connects all harts and transport modules? 13 address bits, XLEN bits for write, XLEN bits for read.
+//
+//|Shared functionality (Debug Module): (github)
+//Debug Bus connects DM to DTMs. 5-7 address bits, 32 data bits.
+//Debug Bus slave
+//System bus slave, optionally a master
+//Up to 148 bytes of ROM
+//28 (RV32) or 40 (RV64) bytes of RAM
+//
+//|Independent of any transport module.
+//The debug bus can be connected to the actual system bus (allowing one hart to debug another). Or it can be connected to an external interface (e.g. JTAG/UART,USB).
+//The adv_dbg_if is an example on how to connect the Debug Unit to JTAG
+//
+//|JTAG Debug Transport Module: (github and github)
+//Debug Bus master
+//Provides access to Debug Bus with a ~40-bit register plus a small control register
+//
+//|
+//
+//|One interrupt signal from each Debug Unit to the Debug Controller (module that
+//connects the debug bus to the outside world). Alternatively shared interrupt,
+//after which the debug software checks which Hart triggered the interrupt.
+//
+//|Currently using adv_dbg_if, but easily portable to OpenOCD. 
+//|OpenOCD support (github)
+//
+//Common Functionality
+//
+//
+//|GDB support exists (using existing GDB port with RSP driver)
+//Supports hardware and software breakpoints, single stepping, register/memory examination.
+//|gdb support exists
+//|No specific requirements on the actual interface, although JTAG is an obvious choice.
+//|Only JTAG DTM specified
+//|Optionally allows arbitrary instructions to be executed
+//|Allows arbitrary instructions to be executed
+//|Trace currently not defined yet
+//|Trace currently not defined yet
+//|In a multi-core/thread system the debug bus can be mapped into the CPU address
+//space. Allowing one core/thread to debug another.
+//|In a multi-core/thread system the debug bus can be mapped into the CPU address
+//space. Allowing one core/thread to debug another.
+//|Because the registers are memory mapped any external controller will do.
+//|Because the Debug Module interface exposes a bus-like interface, any external controller will do.
+//
+//
+//Full Featured Overview
+//
+//
