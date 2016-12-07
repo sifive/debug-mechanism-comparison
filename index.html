@@ -675,9 +675,25 @@ hardware breakpoints
 comparison as my jtag/debug interface handles burst mode accesses (it can read
 an entire address range in one burst), handles multiple harts, and has a JSP
 (emulated serial port).</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SiFive Coreplex: 3,900 gates plus 600 gates per hart (RV32, no triggers)
-</p><p class="tableblock">IQ-Analog NanoRisc5: 628 flops plus 1479 LUTs for one RV32, no triggers
-</p><p class="tableblock">Numbers include everything from JTAG TAP down to core changes.</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="dlist">
+<dl>
+<dt class="hdlist1">SiFive Coreplex</dt>
+<dd>
+<p>3,900 gates plus 600 gates per hart (RV32, no triggers)</p>
+</dd>
+<dt class="hdlist1">SiFive FE310 silicon</dt>
+<dd>
+<p>46,935 square &micro;m, or 1.17% of the total area of the SoC.</p>
+</dd>
+<dt class="hdlist1">IQ-Analog NanoRisc5</dt>
+<dd>
+<p>628 flops plus 1479 LUTs for one RV32, no triggers</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Numbers include everything from JTAG TAP down to core changes.</p>
+</div></div></td>
 </tr>
 </tbody>
 </table>
@@ -803,7 +819,7 @@ useful fashion.</p></td>
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2016-12-06 13:19:53 PST
+Last updated 2016-12-07 12:07:52 PST
 </div>
 </div>
 </body>
