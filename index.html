@@ -677,15 +677,15 @@ an entire address range in one burst), handles multiple harts, and has a JSP
 (emulated serial port).</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="dlist">
 <dl>
-<dt class="hdlist1">SiFive Coreplex</dt>
+<dt class="hdlist1">SiFive Coreplex, 0.11 spec</dt>
 <dd>
 <p>3,900 gates plus 600 gates per hart (RV32, no triggers)</p>
 </dd>
-<dt class="hdlist1">SiFive FE310 silicon</dt>
+<dt class="hdlist1">SiFive FE310 silicon, 0.11 spec</dt>
 <dd>
 <p>46,935 square &micro;m, or 1.17% of the total area of the SoC.</p>
 </dd>
-<dt class="hdlist1">IQ-Analog NanoRisc5</dt>
+<dt class="hdlist1">IQ-Analog NanoRisc5, 0.11 spec</dt>
 <dd>
 <p>628 flops plus 1479 LUTs for one RV32, no triggers</p>
 </dd>
@@ -758,7 +758,8 @@ Transfer rate: 121 KB/sec, 4025 bytes/write.<br></p></td>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Should be easy.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Basic debugging is easy. Making the debugger perform well will require some
-careful coding.</p></td>
+careful coding.
+<span class="footnote">[<a id="_footnoteref_1" class="footnote" href="#_footnote_1" title="View footnote.">1</a>]</span></p></td>
 </tr>
 </tbody>
 </table>
@@ -816,10 +817,21 @@ useful fashion.</p></td>
 </div>
 </div>
 </div>
+<div id="footnotes">
+<hr>
+<div class="footnote" id="_footnote_1">
+<a href="#_footnoteref_1">1</a>. The simple implementation involves one round trip to the debug device
+(USB-JTAG adapter) per scan, which tends to have a lot of overhead. Multiple
+scans are required to perform almost any operation: at least 1 for an
+instruction, and at least 1 for data. The only way to make the debugger
+responsive is to combine multiple JTAG scans into a single request to the debug
+device. This isn&#8217;t rocket science but it does require some thought.
+</div>
+</div>
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2016-12-07 12:07:52 PST
+Last updated 2016-12-07 12:55:30 PST
 </div>
 </div>
 </body>

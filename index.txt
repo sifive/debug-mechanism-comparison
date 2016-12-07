@@ -162,11 +162,11 @@ comparison as my jtag/debug interface handles burst mode accesses (it can read
 an entire address range in one burst), handles multiple harts, and has a JSP
 (emulated serial port).
 
-a|SiFive Coreplex::
+a|SiFive Coreplex, 0.11 spec::
     3,900 gates plus 600 gates per hart (RV32, no triggers)
-SiFive FE310 silicon::
+SiFive FE310 silicon, 0.11 spec::
     46,935 square &micro;m, or 1.17% of the total area of the SoC.
-IQ-Analog NanoRisc5::
+IQ-Analog NanoRisc5, 0.11 spec::
     628 flops plus 1479 LUTs for one RV32, no triggers
 
 Numbers include everything from JTAG TAP down to core changes.
@@ -209,6 +209,12 @@ Transfer rate: 121 KB/sec, 4025 bytes/write. +
 |Should be easy.
 |Basic debugging is easy. Making the debugger perform well will require some
 careful coding.
+footnote:[The simple implementation involves one round trip to the debug device
+(USB-JTAG adapter) per scan, which tends to have a lot of overhead. Multiple
+scans are required to perform almost any operation: at least 1 for an
+instruction, and at least 1 for data. The only way to make the debugger
+responsive is to combine multiple JTAG scans into a single request to the debug
+device. This isn't rocket science but it does require some thought.]
 |===
 
 .Quick access
