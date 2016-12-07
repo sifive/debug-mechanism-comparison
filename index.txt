@@ -1,6 +1,6 @@
 = RISC-V Core Debug Mechanism Comparison
 Tim Newsome <tim@sifive.com>
-v0.1, Dec 6, 2016
+v0.1, Dec 7, 2016
 :toc:
 
 == Introduction
@@ -22,6 +22,26 @@ If you'd like to contribute, the git repository is at
 https://github.com/sifive/debug-mechanism-comparison
 
 == Background
+
+=== Definitions
+
+Run control::
+    Halt, step, and resume a hart.  Set breakpoints.  Access GPRs, CSRs, other
+    registers, and memory.
+Self-hosted debug::
+    Debugging where software running on the target system is the thing that
+    allows run control of the thing you're debugging. Eg. running gdb on Linux,
+    and gdbserver on a bare metal target.
+External debug::
+    Debugging a system without making any assumptions about the software
+    running on that system.
+Debug monitor::
+    Software run on a bare metal system that allows for self-hosted debug.
+JTAG::
+    De facto standard transport for external debug, but really developed for
+    post-manufacture test. It's a simple 4-wire serial interface.
+Trace::
+    Have a core emit what it’s doing in real time.
 
 === Goals
 

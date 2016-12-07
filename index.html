@@ -366,7 +366,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <span id="author" class="author">Tim Newsome</span><br>
 <span id="email" class="email"><a href="mailto:tim@sifive.com">tim@sifive.com</a></span><br>
 <span id="revnumber">version 0.1,</span>
-<span id="revdate">Dec 6, 2016</span>
+<span id="revdate">Dec 7, 2016</span>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -374,6 +374,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <li><a href="#_background">Background</a></li>
 <li>
 <ul class="sectlevel2">
+<li><a href="#_definitions">Definitions</a></li>
 <li><a href="#_goals">Goals</a></li>
 <li><a href="#_metrics">Metrics</a></li>
 </ul>
@@ -425,6 +426,42 @@ Herveille/Lightweight/one on the left.)</p>
 <div class="sect1">
 <h2 id="_background">Background</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_definitions">Definitions</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Run control</dt>
+<dd>
+<p>Halt, step, and resume a hart.  Set breakpoints.  Access GPRs, CSRs, other
+registers, and memory.</p>
+</dd>
+<dt class="hdlist1">Self-hosted debug</dt>
+<dd>
+<p>Debugging where software running on the target system is the thing that
+allows run control of the thing you&#8217;re debugging. Eg. running gdb on Linux,
+and gdbserver on a bare metal target.</p>
+</dd>
+<dt class="hdlist1">External debug</dt>
+<dd>
+<p>Debugging a system without making any assumptions about the software
+running on that system.</p>
+</dd>
+<dt class="hdlist1">Debug monitor</dt>
+<dd>
+<p>Software run on a bare metal system that allows for self-hosted debug.</p>
+</dd>
+<dt class="hdlist1">JTAG</dt>
+<dd>
+<p>De facto standard transport for external debug, but really developed for
+post-manufacture test. It&#8217;s a simple 4-wire serial interface.</p>
+</dd>
+<dt class="hdlist1">Trace</dt>
+<dd>
+<p>Have a core emit what it’s doing in real time.</p>
+</dd>
+</dl>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_goals">Goals</h3>
 <div class="paragraph">
@@ -831,7 +868,7 @@ device. This isn&#8217;t rocket science but it does require some thought.
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2016-12-07 12:55:30 PST
+Last updated 2016-12-07 13:08:38 PST
 </div>
 </div>
 </body>
