@@ -45,14 +45,15 @@ Trace::
 
 === Goals
 
-The primary purpose of external debug is to allow a user to connect a debugger
-running on their computer to a target system that is unable to debug the
-software that is running there.  After connecting the user should have full
-access to the target’s resources, with the ability to download and execute
+A debug spec should allow a user to connect a debugger running on their
+computer to a target system. The emphasis is on features that support debugging
+systems that can't or won't support self-hosted debug.  The user should have
+full access to the target’s resources, with the ability to download and execute
 code, set breakpoints, access registers, and access memory.
 
 The spec must describe how debug hardware behaves in such a way that software
-written to debug one RISC-V system will also work to debug another.
+written to debug one RISC-V system will also work to debug another. It must
+also support multiple transports, and not be limited to JTAG.
 
 === Metrics
 
@@ -62,6 +63,9 @@ important, but not everybody will agree with any given ranking:
 
 Ease of hardware implementation::
     How easy it to implement the spec in hardware?
+Ease of hardware verification::
+    How easy it to verify the hardware. The smaller and more self-contained
+    each component is, the better.
 Hardware cost::
     How many gates does the implementation require?
 Scalability::
@@ -85,6 +89,8 @@ Usefulness for self-hosted debug::
 Usefulness for hardware bringup::
     How useful is the interface when bringing up hardware? This is not a
     requirement per the goals, but certainly a nice-to-have.
+Ease of software verification::
+    How easy is it to show that software will always do the right thing?
 
 == Instruction Design
 
@@ -169,6 +175,15 @@ instructions and exchange data. More complex for more complex designs. In that
 case the simple implementation is to have the DM be memory-mapped, so the
 processor can fetch instructions and perform accesses as usual even when
 halted.
+|===
+
+.Ease of hardware verification
+[cols="2*"]
+|===
+|In an implementation where the register files are accessed directly,
+verification could be a significant burden.
+|Requires relatively few changes to the CPU, which is the hardest part of the
+design to verify.
 |===
 
 .Hardware cost
@@ -265,6 +280,13 @@ step.
 even when there are other issues with the core.
 |If the core cannot execute instructions, it's not possible to debug it in any
 useful fashion.
+|===
+
+.Ease of software verification
+[cols="2*"]
+|===
+|Should be a bit easier, since the software needs to be less smart.
+|More complex since the software contains more of the debug logic.
 |===
 
 //.Old Comparison

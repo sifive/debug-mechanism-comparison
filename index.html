@@ -465,15 +465,16 @@ post-manufacture test. It&#8217;s a simple 4-wire serial interface.</p>
 <div class="sect2">
 <h3 id="_goals">Goals</h3>
 <div class="paragraph">
-<p>The primary purpose of external debug is to allow a user to connect a debugger
-running on their computer to a target system that is unable to debug the
-software that is running there.  After connecting the user should have full
-access to the target’s resources, with the ability to download and execute
+<p>A debug spec should allow a user to connect a debugger running on their
+computer to a target system. The emphasis is on features that support debugging
+systems that can&#8217;t or won&#8217;t support self-hosted debug.  The user should have
+full access to the target’s resources, with the ability to download and execute
 code, set breakpoints, access registers, and access memory.</p>
 </div>
 <div class="paragraph">
 <p>The spec must describe how debug hardware behaves in such a way that software
-written to debug one RISC-V system will also work to debug another.</p>
+written to debug one RISC-V system will also work to debug another. It must
+also support multiple transports, and not be limited to JTAG.</p>
 </div>
 </div>
 <div class="sect2">
@@ -488,6 +489,11 @@ important, but not everybody will agree with any given ranking:</p>
 <dt class="hdlist1">Ease of hardware implementation</dt>
 <dd>
 <p>How easy it to implement the spec in hardware?</p>
+</dd>
+<dt class="hdlist1">Ease of hardware verification</dt>
+<dd>
+<p>How easy it to verify the hardware. The smaller and more self-contained
+each component is, the better.</p>
 </dd>
 <dt class="hdlist1">Hardware cost</dt>
 <dd>
@@ -527,6 +533,10 @@ on the core debug itself?</p>
 <dd>
 <p>How useful is the interface when bringing up hardware? This is not a
 requirement per the goals, but certainly a nice-to-have.</p>
+</dd>
+<dt class="hdlist1">Ease of software verification</dt>
+<dd>
+<p>How easy is it to show that software will always do the right thing?</p>
 </dd>
 </dl>
 </div>
@@ -699,7 +709,23 @@ halted.</p></td>
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 3. Hardware cost</caption>
+<caption class="title">Table 3. Ease of hardware verification</caption>
+<colgroup>
+<col style="width:50%;">
+<col style="width:50%;"> 
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In an implementation where the register files are accessed directly,
+verification could be a significant burden.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requires relatively few changes to the CPU, which is the hardest part of the
+design to verify.</p></td>
+</tr>
+</tbody>
+</table>
+
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<caption class="title">Table 4. Hardware cost</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -736,7 +762,7 @@ an entire address range in one burst), handles multiple harts, and has a JSP
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 4. Scalability</caption>
+<caption class="title">Table 5. Scalability</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -754,7 +780,7 @@ hardware does not need to be modified.
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 5. Security</caption>
+<caption class="title">Table 6. Security</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -763,13 +789,14 @@ hardware does not need to be modified.
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No clear security impact.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">No clear security impact. The spec does mention options for authenticating a
-debug user.</p></td>
+debug user. The fact that memory accesses go through the core is helpful if a
+designer wants to allow eg. U-mode debugging but not M-mode debugging.</p></td>
 </tr>
 </tbody>
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 6. Speed of debugging</caption>
+<caption class="title">Table 7. Speed of debugging</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -786,7 +813,7 @@ Transfer rate: 121 KB/sec, 4025 bytes/write.<br></p></td>
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 7. Ease of software implementation</caption>
+<caption class="title">Table 8. Ease of software implementation</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -802,7 +829,7 @@ careful coding.
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 8. Quick access</caption>
+<caption class="title">Table 9. Quick access</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -819,7 +846,7 @@ as the processor can manage.</p></td>
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 9. Usefulness for self-hosted debug</caption>
+<caption class="title">Table 10. Usefulness for self-hosted debug</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -836,7 +863,7 @@ step.</p></td>
 </table>
 
 <table class="tableblock frame-all grid-all" style="width:100%; ">
-<caption class="title">Table 10. Usefulness for hardware bringup</caption>
+<caption class="title">Table 11. Usefulness for hardware bringup</caption>
 <colgroup>
 <col style="width:50%;">
 <col style="width:50%;"> 
@@ -847,6 +874,20 @@ step.</p></td>
 even when there are other issues with the core.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If the core cannot execute instructions, it&#8217;s not possible to debug it in any
 useful fashion.</p></td>
+</tr>
+</tbody>
+</table>
+
+<table class="tableblock frame-all grid-all" style="width:100%; ">
+<caption class="title">Table 12. Ease of software verification</caption>
+<colgroup>
+<col style="width:50%;">
+<col style="width:50%;"> 
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Should be a bit easier, since the software needs to be less smart.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">More complex since the software contains more of the debug logic.</p></td>
 </tr>
 </tbody>
 </table>
@@ -868,7 +909,7 @@ device. This isn&#8217;t rocket science but it does require some thought.
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2016-12-07 13:08:38 PST
+Last updated 2016-12-08 13:14:03 PST
 </div>
 </div>
 </body>
