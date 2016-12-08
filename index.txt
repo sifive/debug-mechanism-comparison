@@ -210,7 +210,8 @@ The spec already takes RV32/RV64/RV128 into account.
 |===
 |No clear security impact.
 |No clear security impact. The spec does mention options for authenticating a
-debug user.
+debug user. The fact that memory accesses go through the core is helpful if a
+designer wants to allow eg. U-mode debugging but not M-mode debugging.
 |===
 
 .Speed of debugging
