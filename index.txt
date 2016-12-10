@@ -1,6 +1,6 @@
 = RISC-V Core Debug Mechanism Comparison
 Tim Newsome <tim@sifive.com>
-v0.1, Dec 7, 2016
+v0.1, Dec 10, 2016
 :toc:
 
 == Introduction

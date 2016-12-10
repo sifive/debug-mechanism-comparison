@@ -366,7 +366,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <span id="author" class="author">Tim Newsome</span><br>
 <span id="email" class="email"><a href="mailto:tim@sifive.com">tim@sifive.com</a></span><br>
 <span id="revnumber">version 0.1,</span>
-<span id="revdate">Dec 7, 2016</span>
+<span id="revdate">Dec 10, 2016</span>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
@@ -616,6 +616,12 @@ of what the debugger does to read memory.</p>
 </tbody>
 </table>
 
+<div class="paragraph">
+<p>These operations can all be combined in a single transaction from debugger to
+USB JTAG adapter, because of the way that errors are sticky when one occurs.
+When all operations are done the debugger can check for errors, and retry with
+longer delays if necessary.</p>
+</div>
 <div class="paragraph">
 <p>The optional Instruction Buffer and Scratch RAM can be used to set up this
 action without any interaction (steps 2 and 5 use Scratch RAM). This enables a
@@ -909,7 +915,7 @@ device. This isn&#8217;t rocket science but it does require some thought.
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2016-12-08 13:14:03 PST
+Last updated 2016-12-10 10:46:48 PST
 </div>
 </div>
 </body>
