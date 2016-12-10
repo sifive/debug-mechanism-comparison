@@ -120,11 +120,37 @@ a|1. Push `lw s0, 0x400(zero)`
 5. Read data the hart wrote to the DM
 |===
 
+These operations can all be combined in a single transaction from debugger to
+USB JTAG adapter, because of the way that errors are sticky when one occurs.
+When all operations are done the debugger can check for errors, and retry with
+longer delays if necessary.
+
 The optional Instruction Buffer and Scratch RAM can be used to set up this
 action without any interaction (steps 2 and 5 use Scratch RAM). This enables a
 debugger to perform actions while halting the core just briefly.
 
 The Instruction Buffer is also important in achieving fast download speeds.
+
+//Another example, reading from a hypothetical vector unit. We assume an
+//instruction `vmv.w dest, index, vsrc` that moves the word specified by the GPR
+//`index` of the vector register `vsrc` into GPR `dest`.
+//
+//.Read from vector register v0
+//|===
+//|Using CSRs |Using memory-mapped interface
+//
+//a|1. Push `csrr s0, daccess32`
+//2. Push index to read
+//3. Push `vmv.w s0, s0, v0`
+//4. Push `csrw s0, daccess32`
+//5. Read data that was in the vector register
+//a|1. Push `lw s0, 0x400(zero)`
+//2. Push index to read
+//3. Push `vmv.w s0, s0, v0`
+//4. Push `sw s0, 0x400(s0)`
+//5. Read data that was in the vector register
+//|===
+
 
 === Rationale
 
