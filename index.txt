@@ -1,6 +1,6 @@
 = RISC-V Core Debug Mechanism Comparison
 Tim Newsome <tim@sifive.com>
-v0.1, Dec 10, 2016
+v0.1, Dec 11, 2016
 :toc:
 
 == Introduction
@@ -94,7 +94,17 @@ Ease of software verification::
 
 == Instruction Design
 
+https://dev.sifive.com/documentation/risc-v-external-debug-support/[Latest Spec]
+
 === Overview
+
+This design is focused on the debugger feeding a halted hart arbitrary
+instructions, while keeping gate count to a minimum. This is necessary
+functionality, and once it exists it can be used to accomplish all debug tasks.
+To speed up certain repetitive operations, an optional Instruction Buffer can
+be implemented. This is designed so that debug software can easily take
+advantage of it if it exists, but doesn't need separate code paths if it
+doesn't.
 
 image::overview.png[Instruction Design Overview]
 
