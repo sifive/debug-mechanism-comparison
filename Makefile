@@ -1,4 +1,5 @@
 HTML=index.html
+HTML+=feed-implementation.html
 
 all:	$(HTML)
 

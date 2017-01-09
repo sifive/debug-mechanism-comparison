@@ -106,7 +106,7 @@ be implemented. This is designed so that debug software can easily take
 advantage of it if it exists, but doesn't need separate code paths if it
 doesn't.
 
-image::overview.png[Instruction Design Overview]
+image::figures/overview.png[Instruction Design Overview]
 
 When a hart halts (because it's interrupted by the debugger or hits a
 breakpoint), it starts fetching instructions from the DM. The DM communicates

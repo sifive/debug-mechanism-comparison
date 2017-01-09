@@ -1,0 +1,44 @@
+= Instruction Feed Implementations
+Tim Newsome <tim@sifive.com>
+v0.1, Jan 9, 2016
+
+== Debugger Interface
+
+The debugger is able to perform the following operations through the Debug
+Module:
+
+. Halt the hart.
+. Cause an instruction to be executed on a halted hart.
+. Read the shared data register.
+. Write the shared data register.
+
+No specific implementation of those primitives is required. Two possibilities
+are below.
+
+== Minimum Gates
+
+This implementation attempts to use as few gates as possible and is suitable
+for very simple cores.
+
+image::figures/direct.png[Instruction Design Overview]
+
+When halted, instructions (and a valid signal) come from the Debug Module
+instead of the Instruction Fetch unit. Incrementing the PC is inhibited so no
+separate register is needed to store the PC. Instead accessing dpc modifies the
+actual PC register. (I'm assuming there is such a thing.) Accessing the daccess
+CSR really translates into an access to the Debug Module to enable exchanging
+data.
+
+== Bus Slave
+
+This implementation places the Debug Module on the System Bus and has the hart
+fetch instructions as usual. It requires only minimal and straightforward
+changes to the core itself.
+
+image::figures/plain-exception.png[Instruction Design Overview]
+
+When halt is asserted, the hart takes an exception, saving PC to the dpc CSR,
+and it jumps to the address in memory where the Debug Module lives. The Debug
+Module satisfies accesses to 0x0 in its memory space with instructions it gets
+from the debugger. Data is exchanged through a special CSR. Accesses to this
+CSR are equivalent to lw/sw instructions to 0xc in the Debug Module.
