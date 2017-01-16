@@ -7,6 +7,9 @@ then fill out the poll below.
 
 == Proposals
 
+None of these proposals are final, but this poll will limit the direction that
+we'll pursue.
+
 === Instruction Feeding
 
 The debugger can to perform the following operations on a hart:
@@ -49,26 +52,26 @@ small amount of extra logic to translate the abstract interface to instruction
 feeding.
 
 * Summary of options: https://goo.gl/9abgZa
-* Detailed proposals: https://goo.gl/rGWyWl (message-based),
-https://goo.gl/Uy5V2k (memory map)
+* Detailed proposals: https://goo.gl/rGWyWl[message-based],
+https://goo.gl/Uy5V2k[memory map]
 
 === Provide the choice of two interfaces
 
-Two optional external interfaces are provided: access state by
-transferring RISC-V instructions or through an abstract (command or
-memory map) interface. Implementers are able to choose to provide only one of
-these interface.
+Two optional external interfaces are provided: access state by transferring
+RISC-V instructions or through an abstract (command or memory map) interface.
+Implementers are able to choose to provide only one of these interface.
 
-This gives the greatest possible flexibility to
-RISC-V implementers and avoids any hardware cost for translating messages or
-memory accesses. This benefit outweighs the cost of debug
-software having to support multiple access methods for the same state.
+This gives the greatest possible flexibility to RISC-V implementers and avoids
+any hardware cost for translating messages or memory accesses. This benefit
+outweighs the cost of debug software having to support multiple access methods
+for the same state.
 
 * Summary of options: https://goo.gl/9abgZa
-* Detailed proposals: https://goo.gl/rGWyWl (message-based),
-https://goo.gl/Uy5V2k (memory map),
-https://dev.sifive.com/documentation/risc-v-external-debug-support/ (original
-instruction feeding proposal)
+* Detailed proposals: https://goo.gl/rGWyWl[message-based],
+https://goo.gl/Uy5V2k[memory map],
+https://dev.sifive.com/documentation/risc-v-external-debug-support/[original
+instruction feeding proposal], https://goo.gl/XgsdrA[alternative "two
+optional components" proposal]
 
 == Poll
 
