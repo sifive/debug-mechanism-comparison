@@ -1,0 +1,63 @@
+= Debug System Terminology
+Tim Newsome <tim@sifive.com>
+v0.1, Jan 16, 2016
+
+There's at least some confusion in the group because not everybody uses the
+same terms. Let's use these ones to avoid that:
+
+== Features
+
+Run control::
+    Halt, step, and resume a hart.  Set breakpoints.  Access GPRs, CSRs, other
+    registers, and memory.
+Self-hosted debug::
+    Debugging where software running on the target system is the thing that
+    allows run control of the thing you're debugging. Eg. running gdb on Linux,
+    and gdbserver on a bare metal target.
+External debug::
+    Debugging a system without making any assumptions about the software
+    running on that system.
+Debug monitor::
+    Software run on a bare metal system that allows for self-hosted debug.
+Trace::
+    Have a core emit what it’s doing in real time.
+
+== Components
+
+These components exist in every debug spec, although depending on the details
+they may be simple pass-through so are not explicitly mentioned.
+
+image::figures/terminology.png[Components]
+
+Platform::
+    An SoC or similar.
+Debug Transport Module (DTM)::
+    Module that provides access to the SDBUS.
+System Debug Module Bus (SDBUS)::
+    Bus that allows Debug Transport Modules to access the System Debug Module.
+System Debug Module (SDM)::
+    A single module in a Platform that provides a standard interface to
+    debugging up to 1024 harts.
+System Debug Module Address Space (SDAS)::
+    The address space serviced by the System Debug Module.
+Hart Debug Bus (HDBUS)::
+    Bus that allows the SDM to access a Hart Debug Unit, Trigger Unit, and
+    Trace Unit. Depending on the design, either one may be a master and/or
+    slave.
+Hart Debug Unit (HDU)::
+    Part of a RISC-V core that enables and supports debugging of a single hart.
+Trigger Unit::
+    Part of a RISC-V core that supports hardware triggers in a hart.
+Trace Unit::
+    Part of a RISC-V core that supports trace in a hart.
+System Bus::
+    The bus that is used for the most common operations in the SoC. Typically
+    this will have one or more cores as bus masters, and memory and peripherals
+    as bus slaves.  Depending on the design, the System Bus may be used as
+    SDBUS and/or HDBUS.
+
+== Other
+
+JTAG::
+    De facto standard transport for external debug, but really developed for
+    post-manufacture test. It's a simple 4-wire serial interface.

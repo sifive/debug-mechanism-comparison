@@ -1,5 +1,6 @@
 HTML=index.html
 HTML+=feed-implementation.html
+HTML+=terminology.html
 
 all:	$(HTML)
 

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="Asciidoctor 0.1.4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Instruction Feed Implementations</title>
+<title>Debug System Terminology</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
@@ -362,83 +362,129 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </head>
 <body class="article">
 <div id="header">
-<h1>Instruction Feed Implementations</h1>
+<h1>Debug System Terminology</h1>
 <span id="author" class="author">Tim Newsome</span><br>
 <span id="email" class="email"><a href="mailto:tim@sifive.com">tim@sifive.com</a></span><br>
 <span id="revnumber">version 0.1,</span>
-<span id="revdate">Jan 9, 2016</span>
+<span id="revdate">Jan 16, 2016</span>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_debugger_interface">Debugger Interface</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The debugger is able to perform the following operations through the Debug
-Module:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Halt the hart.</p>
-</li>
-<li>
-<p>Cause an instruction to be executed on a halted hart.</p>
-</li>
-<li>
-<p>Read the shared data register.</p>
-</li>
-<li>
-<p>Write the shared data register.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>No specific implementation of those primitives is required. Two possibilities
-are below.</p>
+<p>There&#8217;s at least some confusion in the group because not everybody uses the
+same terms. Let&#8217;s use these ones to avoid that:</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_minimum_gates">Minimum Gates</h2>
+<h2 id="_features">Features</h2>
+<div class="sectionbody">
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Run control</dt>
+<dd>
+<p>Halt, step, and resume a hart.  Set breakpoints.  Access GPRs, CSRs, other
+registers, and memory.</p>
+</dd>
+<dt class="hdlist1">Self-hosted debug</dt>
+<dd>
+<p>Debugging where software running on the target system is the thing that
+allows run control of the thing you&#8217;re debugging. Eg. running gdb on Linux,
+and gdbserver on a bare metal target.</p>
+</dd>
+<dt class="hdlist1">External debug</dt>
+<dd>
+<p>Debugging a system without making any assumptions about the software
+running on that system.</p>
+</dd>
+<dt class="hdlist1">Debug monitor</dt>
+<dd>
+<p>Software run on a bare metal system that allows for self-hosted debug.</p>
+</dd>
+<dt class="hdlist1">Trace</dt>
+<dd>
+<p>Have a core emit what it’s doing in real time.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_components">Components</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This implementation attempts to use as few gates as possible and is suitable
-for very simple cores.</p>
+<p>These components exist in every debug spec, although depending on the details
+they may be simple pass-through so are not explicitly mentioned.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="figures/direct.png" alt="Instruction Design Overview">
+<img src="figures/terminology.png" alt="Components">
 </div>
 </div>
-<div class="paragraph">
-<p>When halted, instructions (and a valid signal) come from the Debug Module
-instead of the Instruction Fetch unit. Incrementing the PC is inhibited so no
-separate register is needed to store the PC. Instead accessing dpc modifies the
-actual PC register. (I&#8217;m assuming there is such a thing.) Accessing the daccess
-CSR really translates into an access to the Debug Module to enable exchanging
-data.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Platform</dt>
+<dd>
+<p>An SoC or similar.</p>
+</dd>
+<dt class="hdlist1">Debug Transport Module (DTM)</dt>
+<dd>
+<p>Module that provides access to the SDBUS.</p>
+</dd>
+<dt class="hdlist1">System Debug Module Bus (SDBUS)</dt>
+<dd>
+<p>Bus that allows Debug Transport Modules to access the System Debug Module.</p>
+</dd>
+<dt class="hdlist1">System Debug Module (SDM)</dt>
+<dd>
+<p>A single module in a Platform that provides a standard interface to
+debugging up to 1024 harts.</p>
+</dd>
+<dt class="hdlist1">System Debug Module Address Space (SDAS)</dt>
+<dd>
+<p>The address space serviced by the System Debug Module.</p>
+</dd>
+<dt class="hdlist1">Hart Debug Bus (HDBUS)</dt>
+<dd>
+<p>Bus that allows the SDM to access a Hart Debug Unit, Trigger Unit, and
+Trace Unit. Depending on the design, either one may be a master and/or
+slave.</p>
+</dd>
+<dt class="hdlist1">Hart Debug Unit (HDU)</dt>
+<dd>
+<p>Part of a RISC-V core that enables and supports debugging of a single hart.</p>
+</dd>
+<dt class="hdlist1">Trigger Unit</dt>
+<dd>
+<p>Part of a RISC-V core that supports hardware triggers in a hart.</p>
+</dd>
+<dt class="hdlist1">Trace Unit</dt>
+<dd>
+<p>Part of a RISC-V core that supports trace in a hart.</p>
+</dd>
+<dt class="hdlist1">System Bus</dt>
+<dd>
+<p>The bus that is used for the most common operations in the SoC. Typically
+this will have one or more cores as bus masters, and memory and peripherals
+as bus slaves.  Depending on the design, the System Bus may be used as
+SDBUS and/or HDBUS.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_bus_slave">Bus Slave</h2>
+<h2 id="_other">Other</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>This implementation places the Debug Module on the System Bus and has the hart
-fetch instructions as usual. It requires only minimal and straightforward
-changes to the core itself.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="figures/plain-exception.png" alt="Instruction Design Overview">
-</div>
-</div>
-<div class="paragraph">
-<p>When halt is asserted, the hart takes an exception, saving PC to the dpc CSR,
-and it jumps to the address in memory where the Debug Module lives. The Debug
-Module satisfies accesses to 0x0 in its memory space with instructions it gets
-from the debugger. Data is exchanged through a special CSR. Accesses to this
-CSR are equivalent to lw/sw instructions to 0xc in the Debug Module.</p>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">JTAG</dt>
+<dd>
+<p>De facto standard transport for external debug, but really developed for
+post-manufacture test. It&#8217;s a simple 4-wire serial interface.</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -446,7 +492,7 @@ CSR are equivalent to lw/sw instructions to 0xc in the Debug Module.</p>
 <div id="footer">
 <div id="footer-text">
 Version 0.1<br>
-Last updated 2017-01-16 09:11:15 PST
+Last updated 2017-01-16 09:43:31 PST
 </div>
 </div>
 </body>
