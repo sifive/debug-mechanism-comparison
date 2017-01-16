@@ -5,6 +5,13 @@ v0.1, Jan 16, 2016
 Here it is, folks! Please take a few minutes to read the summary of proposals,
 then fill out the poll below.
 
+== Introduction
+
+The purpose of this poll is to determine the key trade-off the debug
+specification should make.  After that decision is made, the debug taskgroup
+can move forwards in working out the finer details of a complete proposed
+specification that meets the chosen criteria.
+
 == Proposals
 
 None of these proposals are final, but this poll will limit the direction that
