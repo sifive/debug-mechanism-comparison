@@ -1,0 +1,82 @@
+= RISC-V Debug System Poll
+Tim Newsome <tim@sifive.com>
+v0.1, Jan 16, 2016
+
+Here it is, folks! Please take a few minutes to read the summary of proposals,
+then fill out the poll below.
+
+== Proposals
+
+=== Instruction Feeding
+
+The debugger can to perform the following operations on a hart:
+1. Halt/resume
+2. Cause an instruction to be executed
+3. Read/write a shared data register
+There are instructions that access the shared data register.
+
+This provides access to all resources that the hart has access to and is
+future-proof.
+
+By having "halting" act as a normal exception (start fetching instructions from
+the debug module), core changes are kept to a minimum.
+
+Optional extensions provide direct access to the system bus and to internal
+hart state.
+
+More abstract approaches would enable more implementations, but instruction
+feeding is the best approach for most designs. Forcing extra abstraction on
+everybody hurts more than it helps.
+
+Detailed proposal: https://dev.sifive.com/documentation/risc-v-external-debug-support/
+
+=== Unified Abstract Interface
+
+The external interface allows external access to state through abstract
+commands. Instruction feeding of arbitrary instructions should be exposed as an
+optional extension. If necessary, the message encoding could even match RISC-V
+instruction encoding to minimise translation overhead.
+
+Abstracting away from the debug implementation mechanism allows greater freedom
+for system implementers and more flexibility for exposing state, including the
+possibility of accessing some state without halting the core. Implementers
+choose whether to expose state for custom extensions via instruction feeding or
+messages.
+
+The benefits of allowing this greater flexibility and ensuring a single
+baseline interface outweigh any disadvantage for implementers needing to add a
+small amount of extra logic to translate the abstract interface to instruction
+feeding.
+
+* Summary of options: https://goo.gl/9abgZa
+* Detailed proposals: https://goo.gl/rGWyWl (message-based),
+https://goo.gl/Uy5V2k (memory map)
+
+=== Provide the choice of two interfaces
+
+Two optional external interfaces are provided: access state by
+transferring RISC-V instructions or through an abstract (command or
+memory map) interface. Implementers are able to choose to provide only one of
+these interface.
+
+This gives the greatest possible flexibility to
+RISC-V implementers and avoids any hardware cost for translating messages or
+memory accesses. This benefit outweighs the cost of debug
+software having to support multiple access methods for the same state.
+
+* Summary of options: https://goo.gl/9abgZa
+* Detailed proposals: https://goo.gl/rGWyWl (message-based),
+https://goo.gl/Uy5V2k (memory map),
+https://dev.sifive.com/documentation/risc-v-external-debug-support/ (original
+instruction feeding proposal)
+
+== Poll
+
+The poll will go live some time on Tuesday, January 17.
+
+// +++
+// <script type="text/javascript" src="http://www.polljunkie.com/Scripts/embedder.js?v=1"></script>
+// <script type="text/javascript">
+// PollJunkie.show({"s":"risc-v-debug-proposals","width":"600","height":"440","code":"fiawsw","borderColor":"#44ADE9","barBgColor":"#44ADE9","fontColor":"#fff"});
+// </script>
+// +++
