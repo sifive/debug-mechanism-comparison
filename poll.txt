@@ -1,5 +1,5 @@
 = RISC-V Debug System Poll
-Tim Newsome <tim@sifive.com>
+Alex Bradbury <asb@lowrisc.org>, Tim Newsome <tim@sifive.com>
 v0.1, Jan 16, 2016
 
 Here it is, folks! Please take a few minutes to read the summary of proposals,
@@ -12,10 +12,26 @@ specification should make.  After that decision is made, the debug taskgroup
 can move forwards in working out the finer details of a complete proposed
 specification that meets the chosen criteria.
 
+== Procedure
+
+The poll will go live some time on Tuesday, January 17, and closes on Friday,
+January 20.
+
+Each company gets one vote. If you also want to vote on behalf of yourself, go
+ahead and vote again using your name as the company name.
+
+The results of this poll will be made public.
+
+The first group of results we'll look at is the companies that are Foundation
+members. The other set we'll look at is the overall result.
+
 == Proposals
 
 None of these proposals are final, but this poll will limit the direction that
 we'll pursue.
+
+If you have questions about any of these, use the mailing list at
+https://groups.google.com/a/groups.riscv.org/group/debug/
 
 === Instruction Feeding
 
