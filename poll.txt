@@ -105,7 +105,9 @@ optional components" proposal]
 
 == Poll
 
-The poll will go live some time on Tuesday, January 17.
+Please take the poll below (requires loading unauthenticated JavaScript) or at
+http://www.polljunkie.com/poll/fiawsw/risc-v-debug-proposals[the polljunkie
+website].
 
 +++
 <script type="text/javascript" src="http://www.polljunkie.com/Scripts/embedder.js?v=1"></script>
