@@ -75,8 +75,10 @@ small amount of extra logic to translate the abstract interface to instruction
 feeding.
 
 * Summary of options: https://goo.gl/9abgZa
-* Detailed proposals: https://goo.gl/rGWyWl[message-based],
-https://goo.gl/Uy5V2k[memory map]
+* Detailed proposals: https://goo.gl/TL0Rk2[dense memory map],
+https://goo.gl/rGWyWl[message-based],
+https://goo.gl/Uy5V2k[memory map],
+
 
 === Provide the choice of two interfaces
 
