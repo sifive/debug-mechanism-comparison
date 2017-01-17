@@ -107,9 +107,9 @@ optional components" proposal]
 
 The poll will go live some time on Tuesday, January 17.
 
-// +++
-// <script type="text/javascript" src="http://www.polljunkie.com/Scripts/embedder.js?v=1"></script>
-// <script type="text/javascript">
-// PollJunkie.show({"s":"risc-v-debug-proposals","width":"600","height":"440","code":"fiawsw","borderColor":"#44ADE9","barBgColor":"#44ADE9","fontColor":"#fff"});
-// </script>
-// +++
++++
+<script type="text/javascript" src="http://www.polljunkie.com/Scripts/embedder.js?v=1"></script>
+<script type="text/javascript">
+PollJunkie.show({"s":"risc-v-debug-proposals","width":"600","height":"440","code":"fiawsw","borderColor":"#44ADE9","barBgColor":"#44ADE9","fontColor":"#fff"});
+</script>
++++
