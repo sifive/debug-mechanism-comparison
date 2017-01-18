@@ -5,6 +5,8 @@ import sys
 import pprint
 import collections
 import difflib
+# https://github.com/bradbeattie/python-vote-core
+import pyvotecore
 
 COMPANY = 'Company/Affiliation'
 NAME = 'Name'
@@ -24,8 +26,23 @@ def header(title, dash='-'):
 def summarize(results):
     rankings = collections.Counter(r[RANK] for r in results).items()
     rankings.sort(key=lambda x: x[1], reverse=True)
+    ballots = []
     for order, count in rankings:
         print "%3d  %s" % (count, order)
+        ballots.append({"count": count, "ballot": [[x] for x in order.split(",")]})
+
+    from pyvotecore.schulze_method import SchulzeMethod
+    from pyvotecore.condorcet import CondorcetHelper
+    schulze = SchulzeMethod(ballots, ballot_notation=CondorcetHelper.BALLOT_NOTATION_GROUPING)
+
+    print
+    print "Condorcet winner:", schulze.winner
+
+    print
+    print "Algorithm details:"
+    print "```"
+    pprint.pprint(schulze.as_dict())
+    print "```"
 
 def main():
     print "= RISC-V Debug System Preliminary Poll Results"
@@ -61,19 +78,18 @@ def main():
 
     print
     print "== Results from RISC-V members"
-    print
     member_results = [r for r in results if r[MEMBER] == "yes"]
-    summarize(member_results)
     print
     print "Votes from %s." % (", ".join(sorted(r[COMPANY] for r in member_results)))
+    print
+    summarize(member_results)
 
     print
     print "== Overall results"
     print
-    summarize(results)
-
-    print
     print "Votes from %s." % (", ".join(sorted(r[NAME] for r in results)))
+    print
+    summarize(results)
 
     print
     print "== Comments"
@@ -84,5 +100,6 @@ def main():
             print "____"
             print r[COMMENT]
             print "____"
+            print
 
 sys.exit(main())

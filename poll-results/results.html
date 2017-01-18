@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="Asciidoctor 0.1.4">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RISC-V Debug System Poll Results</title>
+<title>RISC-V Debug System Preliminary Poll Results</title>
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary { display: block; }
@@ -362,7 +362,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </head>
 <body class="article">
 <div id="header">
-<h1>RISC-V Debug System Poll Results</h1>
+<h1>RISC-V Debug System Preliminary Poll Results</h1>
 <span id="author" class="author">Tim Newsome</span><br>
 <span id="email" class="email"><a href="mailto:tim@sifive.com">tim@sifive.com</a></span><br>
 </div>
@@ -378,6 +378,9 @@ Skipping submission from test 2 (test)</p>
 <div class="sect1">
 <h2 id="_results_from_risc_v_members">Results from RISC-V members</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Votes from ETH Zurich, Roa Logic BV, SiFive, UC Berkeley Architecture Research, lowRISC CIC.</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>2  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
@@ -386,13 +389,36 @@ Skipping submission from test 2 (test)</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Votes from ETH Zurich, Roa Logic BV, SiFive, UC Berkeley Architecture Research, lowRISC CIC.</p>
+<p>Condorcet winner: Provide the choice of two interfaces</p>
+</div>
+<div class="paragraph">
+<p>Algorithm details:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{'candidates': set(['Instruction Feeding',
+                    'Provide the choice of two interfaces',
+                    'Unified Abstract Interface']),
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 2,
+           ('Instruction Feeding', 'Unified Abstract Interface'): 2,
+           ('Provide the choice of two interfaces', 'Instruction Feeding'): 3,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 3,
+           ('Unified Abstract Interface', 'Instruction Feeding'): 3,
+           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 2},
+ 'strong_pairs': {('Provide the choice of two interfaces', 'Instruction Feeding'): 3,
+                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 3,
+                  ('Unified Abstract Interface', 'Instruction Feeding'): 3},
+ 'winner': 'Provide the choice of two interfaces'}</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_overall_results">Overall results</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Votes from Alex Bradbury, Andrew Waterman, Krste Asanovic, Megan Wachs, Michael Gautschi, Richard Herveille, Sean Halle, Stefan Wallentowitz.</p>
+</div>
 <div class="literalblock">
 <div class="content">
 <pre>3  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
@@ -402,7 +428,26 @@ Skipping submission from test 2 (test)</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Votes from Alex Bradbury, Andrew Waterman, Krste Asanovic, Megan Wachs, Michael Gautschi, Richard Herveille, Sean Halle, Stefan Wallentowitz.</p>
+<p>Condorcet winner: Provide the choice of two interfaces</p>
+</div>
+<div class="paragraph">
+<p>Algorithm details:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>{'candidates': set(['Instruction Feeding',
+                    'Provide the choice of two interfaces',
+                    'Unified Abstract Interface']),
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 3,
+           ('Instruction Feeding', 'Unified Abstract Interface'): 4,
+           ('Provide the choice of two interfaces', 'Instruction Feeding'): 5,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5,
+           ('Unified Abstract Interface', 'Instruction Feeding'): 4,
+           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 3},
+ 'strong_pairs': {('Provide the choice of two interfaces', 'Instruction Feeding'): 5,
+                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5},
+ 'winner': 'Provide the choice of two interfaces'}</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -448,7 +493,7 @@ I still think we should provide a simple memory mapped interface for the base ac
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-18 07:31:02 PST
+Last updated 2017-01-18 07:47:09 PST
 </div>
 </div>
 </body>
