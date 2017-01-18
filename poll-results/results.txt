@@ -1,0 +1,40 @@
+= RISC-V Debug System Poll Results
+Tim Newsome <tim@sifive.com>
+
+Skipping submission from ignore, test (test)
+Skipping submission from test 2 (test)
+
+== Results from RISC-V members
+
+  2  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
+  2  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+  1  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
+
+Votes from ETH Zurich, Roa Logic BV, SiFive, UC Berkeley Architecture Research, lowRISC CIC.
+
+== Overall results
+
+  3  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
+  3  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+  1  Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface
+  1  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
+
+Votes from Alex Bradbury, Andrew Waterman, Krste Asanovic, Megan Wachs, Michael Gautschi, Richard Herveille, Sean Halle, Stefan Wallentowitz.
+
+== Comments
+
+[quote, Alex Bradbury (lowRISC CIC)]
+____
+I believe 1) we should choose an interface that permits as wide a range of implementation options as possible, and 2) there hasn't been sufficient justification for risking fragmentation in the RISC-V ecosystem. As such, the logical conclusion for me is to prefer a 'unified abstract interface'. Although I don't like the idea of risking fragmentation, 'two interfaces' remains my second choice - I feel that's preferable to restricting the choices available to RISC-V implementers, especially given the huge diversity of cores and requirements.
+
+I would additionally point out that we can start with the unified abstract interface, and if the overhead of translating simple commands to simple instructions is found to be an issue it can always later move in the direction of the 'option of two interfaces' option.
+____
+[quote, Richard Herveille (Roa Logic BV)]
+____
+All of these will work, neither is a bad idea. With the exception of using instructions as abstract commands, that just gets ugly and convoluted.
+I still think we should provide a simple memory mapped interface for the base access and use 'instruction supply' for the complex stuff.
+____
+[quote, Sean Halle (Intensivate)]
+____
+We are doing a high performance RISC-V core, which is tight on critical path.  A mux in front of the register set would impact the entire chip's performance and/or cost.  Yet the simplicity seems best for designs that don't have such tight timing constraints.  Hence, if the software can handle both methods, that seems the only approach that works for everyone.
+____
