@@ -93,11 +93,12 @@ def main():
     summarize(member_results)
 
     print
-    print "== Overall results"
+    print "== Everybody else"
+    other_results = [r for r in results if r[MEMBER] == "no"]
     print
-    print "Votes from %s." % (", ".join(sorted(r[NAME] for r in results)))
+    print "Votes from %s." % (", ".join(sorted(r[NAME] for r in other_results)))
     print
-    summarize(results)
+    summarize(other_results)
 
     print
     print "== Comments"
