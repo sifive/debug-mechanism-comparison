@@ -23,7 +23,13 @@ def header(title, dash='-'):
     else:
         print dash * 40
 
-def summarize(results):
+def summarize(name, results, field):
+    print
+    print "== Results from %s" % name
+    print
+    print "Votes from %s." % (", ".join(sorted(r[field] for r in results)))
+    print
+
     rankings = collections.Counter(r[RANK] for r in results).items()
     rankings.sort(key=lambda x: x[1], reverse=True)
     ballots = []
@@ -37,9 +43,9 @@ def summarize(results):
 
     print
     if hasattr(schulze, "tied_winners"):
-        print "Schulze winners: tie between %s" % (", ".join(schulze.tied_winners))
+        print "*Schulze winners: tie between %s*" % (", ".join(schulze.tied_winners))
     else:
-        print "Schulze winner:", schulze.winner
+        print "*Schulze winner: %s*" % schulze.winner
 
     print
     print "Algorithm details:"
@@ -84,21 +90,13 @@ def main():
 
         results.append(result)
 
-    print
-    print "== Results from RISC-V members"
     member_results = [r for r in results if r[MEMBER] == "yes"]
-    print
-    print "Votes from %s." % (", ".join(sorted(r[COMPANY] for r in member_results)))
-    print
-    summarize(member_results)
+    summarize("RISC-V members", member_results, COMPANY)
 
-    print
-    print "== Everybody else"
     other_results = [r for r in results if r[MEMBER] == "no"]
-    print
-    print "Votes from %s." % (", ".join(sorted(r[NAME] for r in other_results)))
-    print
-    summarize(other_results)
+    summarize("Everybody Else", other_results, NAME)
+
+    summarize("All Votes", results, NAME)
 
     print
     print "== Comments"
