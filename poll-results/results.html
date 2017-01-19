@@ -367,29 +367,22 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <span id="email" class="email"><a href="mailto:tim@sifive.com">tim@sifive.com</a></span><br>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>Skipping submission from ignore, test (test)
-Skipping submission from test 2 (test)</p>
-</div>
-</div>
-</div>
 <div class="sect1">
 <h2 id="_results_from_risc_v_members">Results from RISC-V members</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Votes from ETH Zurich, Roa Logic BV, SiFive, UC Berkeley Architecture Research, lowRISC CIC.</p>
+<p>Votes from Andes Technology Corporation, Codasip, ETH Zurich, Roa Logic BV, SiFive, UC Berkeley Architecture Research, greenwaves technologies, lowRISC CIC.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>2  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
-2  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
-1  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding</pre>
+<pre>3  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+2  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
+2  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
+1  Instruction Feeding,Unified Abstract Interface,Provide the choice of two interfaces</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Condorcet winner: Provide the choice of two interfaces</p>
+<p>Schulze winners: tie between Provide the choice of two interfaces, Instruction Feeding</p>
 </div>
 <div class="paragraph">
 <p>Algorithm details:</p>
@@ -399,16 +392,19 @@ Skipping submission from test 2 (test)</p>
 <pre class="highlight"><code>{'candidates': set(['Instruction Feeding',
                     'Provide the choice of two interfaces',
                     'Unified Abstract Interface']),
- 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 2,
-           ('Instruction Feeding', 'Unified Abstract Interface'): 2,
-           ('Provide the choice of two interfaces', 'Instruction Feeding'): 3,
-           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 3,
-           ('Unified Abstract Interface', 'Instruction Feeding'): 3,
-           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 2},
- 'strong_pairs': {('Provide the choice of two interfaces', 'Instruction Feeding'): 3,
-                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 3,
-                  ('Unified Abstract Interface', 'Instruction Feeding'): 3},
- 'winner': 'Provide the choice of two interfaces'}</code></pre>
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 4,
+           ('Instruction Feeding', 'Unified Abstract Interface'): 4,
+           ('Provide the choice of two interfaces', 'Instruction Feeding'): 4,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5,
+           ('Unified Abstract Interface', 'Instruction Feeding'): 4,
+           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 3},
+ 'strong_pairs': {('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5},
+ 'tie_breaker': ['Unified Abstract Interface',
+                 'Instruction Feeding',
+                 'Provide the choice of two interfaces'],
+ 'tied_winners': set(['Instruction Feeding',
+                      'Provide the choice of two interfaces']),
+ 'winner': 'Instruction Feeding'}</code></pre>
 </div>
 </div>
 </div>
@@ -417,18 +413,20 @@ Skipping submission from test 2 (test)</p>
 <h2 id="_overall_results">Overall results</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Votes from Alex Bradbury, Andrew Waterman, Krste Asanovic, Megan Wachs, Michael Gautschi, Richard Herveille, Sean Halle, Stefan Wallentowitz.</p>
+<p>Votes from Adam Husar, Alex Bradbury, Andrew Waterman, Andy Traber, Arthur Jones, Charlie Su, Jiri Bartak, Joseph K., Krste Asanovic, Megan Wachs, Michael Gautschi, Monte Dalrymple, Richard Herveille, Sean Halle, Stefan Wallentowitz, Wei Song, eric flamand.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>3  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
-3  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
-1  Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface
-1  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding</pre>
+<pre>6  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+4  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
+3  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
+2  Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface
+1  Instruction Feeding,Unified Abstract Interface,Provide the choice of two interfaces
+1  Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Condorcet winner: Provide the choice of two interfaces</p>
+<p>Schulze winner: Provide the choice of two interfaces</p>
 </div>
 <div class="paragraph">
 <p>Algorithm details:</p>
@@ -438,14 +436,15 @@ Skipping submission from test 2 (test)</p>
 <pre class="highlight"><code>{'candidates': set(['Instruction Feeding',
                     'Provide the choice of two interfaces',
                     'Unified Abstract Interface']),
- 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 3,
-           ('Instruction Feeding', 'Unified Abstract Interface'): 4,
-           ('Provide the choice of two interfaces', 'Instruction Feeding'): 5,
-           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5,
-           ('Unified Abstract Interface', 'Instruction Feeding'): 4,
-           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 3},
- 'strong_pairs': {('Provide the choice of two interfaces', 'Instruction Feeding'): 5,
-                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5},
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 8,
+           ('Instruction Feeding', 'Unified Abstract Interface'): 9,
+           ('Provide the choice of two interfaces', 'Instruction Feeding'): 9,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 11,
+           ('Unified Abstract Interface', 'Instruction Feeding'): 8,
+           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 6},
+ 'strong_pairs': {('Instruction Feeding', 'Unified Abstract Interface'): 9,
+                  ('Provide the choice of two interfaces', 'Instruction Feeding'): 9,
+                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 11},
  'winner': 'Provide the choice of two interfaces'}</code></pre>
 </div>
 </div>
@@ -488,12 +487,32 @@ I still think we should provide a simple memory mapped interface for the base ac
 &#8212; Sean Halle (Intensivate)
 </div>
 </div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>although my company is foundation members, I&#8217;m only voting as an individual not for the company</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Joseph K. (Microsoft)
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>The future-proof argument is the strongest in my opinion. Although it requires the debugger to be integrated with the RISC-V assembler and linker (at least during build), this option is the most versatile one. I would not provide both interfaces.</p>
+</div>
+</blockquote>
+<div class="attribution">
+&#8212; Adam Husar (Codasip)
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-18 07:47:09 PST
+Last updated 2017-01-19 11:31:04 PST
 </div>
 </div>
 </body>

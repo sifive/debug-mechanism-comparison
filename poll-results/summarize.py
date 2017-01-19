@@ -36,7 +36,10 @@ def summarize(results):
     schulze = SchulzeMethod(ballots, ballot_notation=CondorcetHelper.BALLOT_NOTATION_GROUPING)
 
     print
-    print "Condorcet winner:", schulze.winner
+    if hasattr(schulze, "tied_winners"):
+        print "Schulze winners: tie between %s" % (", ".join(schulze.tied_winners))
+    else:
+        print "Schulze winner:", schulze.winner
 
     print
     print "Algorithm details:"
@@ -60,11 +63,16 @@ def main():
         if result[NAME] == "Krste Asanovic":
             # Krste wants to vote UC Berkeley
             result[COMPANY] = "UC Berkeley Architecture Research"
+        if result[NAME] == "Adam Husar":
+            # Adam votes for Codasip
+            result[COMPANY] = "Codasip"
+        if result[NAME] == "Jiri Bartak":
+            # Adam already voted for Codasip. Jiri can vote for himself.
+            result[COMPANY] = result[NAME]
+            result[MEMBER] = "no"
         # End of fixes
 
         if result[COMPANY] == "test":
-            print "Skipping submission from %s (%s)" % (result[NAME],
-                    result[COMPANY])
             continue
 
         similar_companies = difflib.get_close_matches(result[COMPANY], seen_companies)
