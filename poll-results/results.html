@@ -399,9 +399,9 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
            ('Unified Abstract Interface', 'Instruction Feeding'): 4,
            ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 3},
  'strong_pairs': {('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5},
- 'tie_breaker': ['Unified Abstract Interface',
-                 'Instruction Feeding',
-                 'Provide the choice of two interfaces'],
+ 'tie_breaker': ['Instruction Feeding',
+                 'Provide the choice of two interfaces',
+                 'Unified Abstract Interface'],
  'tied_winners': set(['Instruction Feeding',
                       'Provide the choice of two interfaces']),
  'winner': 'Instruction Feeding'}</code></pre>
@@ -413,11 +413,11 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h2 id="_results_from_everybody_else">Results from Everybody Else</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Votes from Andy Traber, Arthur Jones, Jiri Bartak, Joseph K., Megan Wachs, Monte Dalrymple, Sean Halle, Stefan Wallentowitz, Wei Song.</p>
+<p>Votes from Andy Traber, Arthur Jones, Jiri Bartak, Joseph K., Megan Wachs, Monte Dalrymple, Sean Halle, Stefan Wallentowitz, Tim Newsome, Wei Song.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>3  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+<pre>4  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
 2  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
 2  Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface
 1  Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces
@@ -425,7 +425,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Schulze winner: Provide the choice of two interfaces</strong></p>
+<p><strong>Schulze winners: tie between Provide the choice of two interfaces, Instruction Feeding</strong></p>
 </div>
 <div class="paragraph">
 <p>Algorithm details:</p>
@@ -435,16 +435,20 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <pre class="highlight"><code>{'candidates': set(['Instruction Feeding',
                     'Provide the choice of two interfaces',
                     'Unified Abstract Interface']),
- 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 4,
-           ('Instruction Feeding', 'Unified Abstract Interface'): 5,
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 5,
+           ('Instruction Feeding', 'Unified Abstract Interface'): 6,
            ('Provide the choice of two interfaces', 'Instruction Feeding'): 5,
-           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 6,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 7,
            ('Unified Abstract Interface', 'Instruction Feeding'): 4,
            ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 3},
- 'strong_pairs': {('Instruction Feeding', 'Unified Abstract Interface'): 5,
-                  ('Provide the choice of two interfaces', 'Instruction Feeding'): 5,
-                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 6},
- 'winner': 'Provide the choice of two interfaces'}</code></pre>
+ 'strong_pairs': {('Instruction Feeding', 'Unified Abstract Interface'): 6,
+                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 7},
+ 'tie_breaker': ['Unified Abstract Interface',
+                 'Instruction Feeding',
+                 'Provide the choice of two interfaces'],
+ 'tied_winners': set(['Instruction Feeding',
+                      'Provide the choice of two interfaces']),
+ 'winner': 'Instruction Feeding'}</code></pre>
 </div>
 </div>
 </div>
@@ -453,11 +457,11 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <h2 id="_results_from_all_votes">Results from All Votes</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Votes from Adam Husar, Alex Bradbury, Andrew Waterman, Andy Traber, Arthur Jones, Charlie Su, Jiri Bartak, Joseph K., Krste Asanovic, Megan Wachs, Michael Gautschi, Monte Dalrymple, Richard Herveille, Sean Halle, Stefan Wallentowitz, Wei Song, eric flamand.</p>
+<p>Votes from Adam Husar, Alex Bradbury, Andrew Waterman, Andy Traber, Arthur Jones, Charlie Su, Jiri Bartak, Joseph K., Krste Asanovic, Megan Wachs, Michael Gautschi, Monte Dalrymple, Richard Herveille, Sean Halle, Stefan Wallentowitz, Tim Newsome, Wei Song, eric flamand.</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>6  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+<pre>7  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
 4  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
 3  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
 2  Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface
@@ -466,7 +470,7 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Schulze winner: Provide the choice of two interfaces</strong></p>
+<p><strong>Schulze winners: tie between Provide the choice of two interfaces, Instruction Feeding</strong></p>
 </div>
 <div class="paragraph">
 <p>Algorithm details:</p>
@@ -476,15 +480,19 @@ span.icon > [class^="icon-"], span.icon > [class*=" icon-"] { cursor: default; }
 <pre class="highlight"><code>{'candidates': set(['Instruction Feeding',
                     'Provide the choice of two interfaces',
                     'Unified Abstract Interface']),
- 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 8,
-           ('Instruction Feeding', 'Unified Abstract Interface'): 9,
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 9,
+           ('Instruction Feeding', 'Unified Abstract Interface'): 10,
            ('Provide the choice of two interfaces', 'Instruction Feeding'): 9,
-           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 11,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 12,
            ('Unified Abstract Interface', 'Instruction Feeding'): 8,
            ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 6},
- 'strong_pairs': {('Instruction Feeding', 'Unified Abstract Interface'): 9,
-                  ('Provide the choice of two interfaces', 'Instruction Feeding'): 9,
-                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 11},
+ 'strong_pairs': {('Instruction Feeding', 'Unified Abstract Interface'): 10,
+                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 12},
+ 'tie_breaker': ['Unified Abstract Interface',
+                 'Provide the choice of two interfaces',
+                 'Instruction Feeding'],
+ 'tied_winners': set(['Instruction Feeding',
+                      'Provide the choice of two interfaces']),
  'winner': 'Provide the choice of two interfaces'}</code></pre>
 </div>
 </div>
@@ -552,7 +560,7 @@ I still think we should provide a simple memory mapped interface for the base ac
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-01-19 12:46:30 PST
+Last updated 2017-01-19 14:08:26 PST
 </div>
 </div>
 </body>
