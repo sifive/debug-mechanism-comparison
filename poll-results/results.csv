@@ -41,3 +41,11 @@ Moreover, debugging without halt the core is very attracting, and this is hard t
 These are the reason why I vote for Unified approach.
 However, I achieve all the effort that both side put in.
 Thanks for your effort to make RISC-V better."
+"27","Dyachenko, Vyacheslav","Syntacore","yes","Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding",""
+"28","Sergiu Mosanu","University of Virginia","no","Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface",""
+"29","Larry Madar","Google, Inc.","yes","Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding",""
+"30","Darius Rad","Bluespec, Inc.","yes","Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface",""
+"31","Larry Madar","Larry Madar","no","Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding","For deeply embedded systems, with real-time constraints, the Instruction Feeding approach does not allow state to be retrieved without stopping the core.  Likewise, for trace-less profiling the profiler must access the machine state non-invasively.
+
+As a second choice, small / embedded cores and large scale OoO cores could pick the right interface for their target market."
+"32","Cyril Jean","Microsemi","yes","Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding",""

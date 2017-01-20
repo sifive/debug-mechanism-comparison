@@ -85,7 +85,7 @@ def main():
         if result[COMPANY] == "test":
             continue
 
-        similar_companies = difflib.get_close_matches(result[COMPANY], seen_companies)
+        similar_companies = difflib.get_close_matches(result[COMPANY], seen_companies, cutoff=0.7)
         if similar_companies:
             print "Skipping vote for %s (by %s). It's probably a second vote for %s" % (
                     result[COMPANY], result[NAME], similar_companies[0])
