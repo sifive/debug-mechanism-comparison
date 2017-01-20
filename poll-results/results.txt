@@ -2,101 +2,95 @@
 Tim Newsome <tim@sifive.com>
 
 
-== Results from RISC-V members
+== Results from Voting RISC-V members
 
-Votes from Andes Technology Corporation, Codasip, ETH Zurich, Roa Logic BV, SiFive, UC Berkeley Architecture Research, greenwaves technologies, lowRISC CIC.
+Votes from Andes Technology Corporation, Codasip, ETH Zurich, Lattice Semiconductor, Roa Logic BV, SiFive, UC Berkeley Architecture Research, UltraSoC, greenwaves technologies, lowRISC CIC, nvidia.
 
+  3  Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces
   3  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
   2  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
   2  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
   1  Instruction Feeding,Unified Abstract Interface,Provide the choice of two interfaces
 
-*Schulze winners: tie between Provide the choice of two interfaces, Instruction Feeding*
+*Schulze winner: Unified Abstract Interface*
 
 Algorithm details:
 ```
 {'candidates': set(['Instruction Feeding',
                     'Provide the choice of two interfaces',
                     'Unified Abstract Interface']),
- 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 4,
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 7,
            ('Instruction Feeding', 'Unified Abstract Interface'): 4,
            ('Provide the choice of two interfaces', 'Instruction Feeding'): 4,
            ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5,
-           ('Unified Abstract Interface', 'Instruction Feeding'): 4,
-           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 3},
- 'strong_pairs': {('Provide the choice of two interfaces', 'Unified Abstract Interface'): 5},
- 'tie_breaker': ['Instruction Feeding',
-                 'Provide the choice of two interfaces',
-                 'Unified Abstract Interface'],
- 'tied_winners': set(['Instruction Feeding',
-                      'Provide the choice of two interfaces']),
- 'winner': 'Instruction Feeding'}
+           ('Unified Abstract Interface', 'Instruction Feeding'): 7,
+           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 6},
+ 'strong_pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 7,
+                  ('Unified Abstract Interface', 'Instruction Feeding'): 7,
+                  ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 6},
+ 'winner': 'Unified Abstract Interface'}
 ```
 
 == Results from Everybody Else
 
-Votes from Andy Traber, Arthur Jones, Jiri Bartak, Joseph K., Megan Wachs, Monte Dalrymple, Sean Halle, Stefan Wallentowitz, Tim Newsome, Wei Song.
+Votes from Andy Traber, Arthur Jones, Jiri Bartak, Joseph K., Julius Baxter, Megan Wachs, Monte Dalrymple, Philipp Wagner, Po-wei Huang, Sean Halle, Stefan Wallentowitz, Tim Newsome, Wei Song.
 
   4  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+  3  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
+  2  Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces
   2  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
   2  Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface
-  1  Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces
-  1  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
 
-*Schulze winners: tie between Provide the choice of two interfaces, Instruction Feeding*
+*Schulze winner: Provide the choice of two interfaces*
 
 Algorithm details:
 ```
 {'candidates': set(['Instruction Feeding',
                     'Provide the choice of two interfaces',
                     'Unified Abstract Interface']),
- 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 5,
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 6,
            ('Instruction Feeding', 'Unified Abstract Interface'): 6,
-           ('Provide the choice of two interfaces', 'Instruction Feeding'): 5,
-           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 7,
-           ('Unified Abstract Interface', 'Instruction Feeding'): 4,
-           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 3},
- 'strong_pairs': {('Instruction Feeding', 'Unified Abstract Interface'): 6,
-                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 7},
- 'tie_breaker': ['Unified Abstract Interface',
-                 'Instruction Feeding',
-                 'Provide the choice of two interfaces'],
- 'tied_winners': set(['Instruction Feeding',
-                      'Provide the choice of two interfaces']),
- 'winner': 'Instruction Feeding'}
+           ('Provide the choice of two interfaces', 'Instruction Feeding'): 7,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 9,
+           ('Unified Abstract Interface', 'Instruction Feeding'): 7,
+           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 4},
+ 'strong_pairs': {('Provide the choice of two interfaces', 'Instruction Feeding'): 7,
+                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 9,
+                  ('Unified Abstract Interface', 'Instruction Feeding'): 7},
+ 'winner': 'Provide the choice of two interfaces'}
 ```
 
-== Results from All Votes
+== Results from Both Groups Combined
 
-Votes from Adam Husar, Alex Bradbury, Andrew Waterman, Andy Traber, Arthur Jones, Charlie Su, Jiri Bartak, Joseph K., Krste Asanovic, Megan Wachs, Michael Gautschi, Monte Dalrymple, Richard Herveille, Sean Halle, Stefan Wallentowitz, Tim Newsome, Wei Song, eric flamand.
+Votes from Adam Husar, Alex Bradbury, Andrew Waterman, Andy Traber, Arthur Jones, Charlie Su, Gajinder Panesar, Jiri Bartak, Joseph K., Julius Baxter, Krste Asanovic, Megan Wachs, Michael Gautschi, Monte Dalrymple, Philipp Wagner, Po-wei Huang, Richard Herveille, Sean Halle, Stefan Wallentowitz, Tim Newsome, Tim Vogt, Wei Song, eric flamand, nvidia.
 
   7  Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface
+  5  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
+  5  Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces
   4  Unified Abstract Interface,Provide the choice of two interfaces,Instruction Feeding
-  3  Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding
   2  Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface
   1  Instruction Feeding,Unified Abstract Interface,Provide the choice of two interfaces
-  1  Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces
 
-*Schulze winners: tie between Provide the choice of two interfaces, Instruction Feeding*
+*Schulze winner: Provide the choice of two interfaces*
 
 Algorithm details:
 ```
-{'candidates': set(['Instruction Feeding',
+{'actions': [{'edges': set([('Instruction Feeding',
+                             'Provide the choice of two interfaces')])},
+             {'nodes': set(['Instruction Feeding',
+                            'Unified Abstract Interface'])}],
+ 'candidates': set(['Instruction Feeding',
                     'Provide the choice of two interfaces',
                     'Unified Abstract Interface']),
- 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 9,
+ 'pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 13,
            ('Instruction Feeding', 'Unified Abstract Interface'): 10,
-           ('Provide the choice of two interfaces', 'Instruction Feeding'): 9,
-           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 12,
-           ('Unified Abstract Interface', 'Instruction Feeding'): 8,
-           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 6},
- 'strong_pairs': {('Instruction Feeding', 'Unified Abstract Interface'): 10,
-                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 12},
- 'tie_breaker': ['Unified Abstract Interface',
-                 'Provide the choice of two interfaces',
-                 'Instruction Feeding'],
- 'tied_winners': set(['Instruction Feeding',
-                      'Provide the choice of two interfaces']),
+           ('Provide the choice of two interfaces', 'Instruction Feeding'): 11,
+           ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 14,
+           ('Unified Abstract Interface', 'Instruction Feeding'): 14,
+           ('Unified Abstract Interface', 'Provide the choice of two interfaces'): 10},
+ 'strong_pairs': {('Instruction Feeding', 'Provide the choice of two interfaces'): 13,
+                  ('Provide the choice of two interfaces', 'Unified Abstract Interface'): 14,
+                  ('Unified Abstract Interface', 'Instruction Feeding'): 14},
  'winner': 'Provide the choice of two interfaces'}
 ```
 
@@ -128,5 +122,47 @@ ____
 [quote, Adam Husar (Codasip)]
 ____
 The future-proof argument is the strongest in my opinion. Although it requires the debugger to be integrated with the RISC-V assembler and linker (at least during build), this option is the most versatile one. I would not provide both interfaces.
+____
+
+[quote, Tim Vogt (Lattice Semiconductor)]
+____
+My preference for the Unified Abstract Interface is contingent on the final spec allowing very small/minimal implementations that still meet the spec.  In other words, if the minimum mandatory requirements in the final spec require significant resources to implement, then my opinion might change.
+
+I don't like having both as optional interfaces; it creates unnecessary complexity.
+____
+
+[quote, nvidia (nvidia)]
+____
+We are strongly pro to instruction feeding as hardware / software interface in our own RISCV design
+But we also recognize that there're other people who want to go to a different way in hardware implementation because of various reasons
+Based on above reasons, we feel that an unified abstract interface would be wiser
+____
+
+[quote, Julius Baxter (FOSSi Foundation)]
+____
+I'm most on favor of the option which results in most debug software supporting most implementations. I expect that message-based (direct access to the core, not instruction feeding) option will become the most prevalent for deeply embedded implementations, and instruction feeding will be for those who love it and those who need it like OoO cores. The abstract thing might be best actually but really I think the option is good.
+____
+
+[quote, Philipp Wagner (Technical University of Munich)]
+____
+Both approaches have their benefits, and I see the main differentiation in the HW implementation complexity. On this topic I think more implementation experience and measured data needs to be gathered to make a final judgment. I therefore propose to defer the standardization for now by making both approaches optional and let the two approaches compete in the real world. Revisit the issue if implementation experience has been gathered.
+____
+
+[quote, Gajinder Panesar (UltraSoC)]
+____
+I think the basic state of the machine should be accessible without stopping it. This will allow for non-intrusive software such as profilers to be implemented. Beyond the basic state the instruction feeding method should be used for everything else. That is why I have ranked the above as I have.
+____
+
+[quote, Po-wei Huang (N/A,master student at national taiwan university now. I'm a individual member at RISC-V Foundation. I couldn't vote,but I would like to contribute.)]
+____
+Providing the choice of two is more like a political compromise. 
+We should make the standard more technical instead of political.
+So, I wouldn't vote for that.
+For the reason why I vote for Unified Abstract Interface, my philosophy is that the standard should be clean and should not be implementation-specific.
+Instruction feeding is only a simple way to implement, and if other company wants to implement a sophisticated way, the standard should not be a restriction.
+Moreover, debugging without halt the core is very attracting, and this is hard to achieved by instruction feeding. The execution should be separated with the observation. 
+These are the reason why I vote for Unified approach.
+However, I achieve all the effort that both side put in.
+Thanks for your effort to make RISC-V better.
 ____
 

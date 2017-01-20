@@ -76,6 +76,10 @@ def main():
             # Adam already voted for Codasip. Jiri can vote for himself.
             result[COMPANY] = result[NAME]
             result[MEMBER] = "no"
+        if result[NAME] == "Po-wei Huang":
+            # Po-wei is an individual member. They don't have voting rights in
+            # the foundation. (I should have made this more clear up front.)
+            result[MEMBER] = "no"
         # End of fixes
 
         if result[COMPANY] == "test":
@@ -91,12 +95,12 @@ def main():
         results.append(result)
 
     member_results = [r for r in results if r[MEMBER] == "yes"]
-    summarize("RISC-V members", member_results, COMPANY)
+    summarize("Voting RISC-V members", member_results, COMPANY)
 
     other_results = [r for r in results if r[MEMBER] == "no"]
     summarize("Everybody Else", other_results, NAME)
 
-    summarize("All Votes", results, NAME)
+    summarize("Both Groups Combined", results, NAME)
 
     print
     print "== Comments"

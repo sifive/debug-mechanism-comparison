@@ -23,3 +23,21 @@ I still think we should provide a simple memory mapped interface for the base ac
 "18","Andy Traber","ACP","no","Provide the choice of two interfaces,Instruction Feeding,Unified Abstract Interface",""
 "19","Wei Song","Wei Song","no","Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding",""
 "20","Tim Newsome","Tim Newsome","no","Instruction Feeding,Provide the choice of two interfaces,Unified Abstract Interface",""
+"21","Tim Vogt","Lattice Semiconductor","yes","Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces","My preference for the Unified Abstract Interface is contingent on the final spec allowing very small/minimal implementations that still meet the spec.  In other words, if the minimum mandatory requirements in the final spec require significant resources to implement, then my opinion might change.
+
+I don't like having both as optional interfaces; it creates unnecessary complexity."
+"22","nvidia","nvidia","yes","Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces","We are strongly pro to instruction feeding as hardware / software interface in our own RISCV design
+But we also recognize that there're other people who want to go to a different way in hardware implementation because of various reasons
+Based on above reasons, we feel that an unified abstract interface would be wiser"
+"23","Julius Baxter","FOSSi Foundation","no","Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding","I'm most on favor of the option which results in most debug software supporting most implementations. I expect that message-based (direct access to the core, not instruction feeding) option will become the most prevalent for deeply embedded implementations, and instruction feeding will be for those who love it and those who need it like OoO cores. The abstract thing might be best actually but really I think the option is good."
+"24","Philipp Wagner","Technical University of Munich","no","Provide the choice of two interfaces,Unified Abstract Interface,Instruction Feeding","Both approaches have their benefits, and I see the main differentiation in the HW implementation complexity. On this topic I think more implementation experience and measured data needs to be gathered to make a final judgment. I therefore propose to defer the standardization for now by making both approaches optional and let the two approaches compete in the real world. Revisit the issue if implementation experience has been gathered."
+"25","Gajinder Panesar","UltraSoC","yes","Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces","I think the basic state of the machine should be accessible without stopping it. This will allow for non-intrusive software such as profilers to be implemented. Beyond the basic state the instruction feeding method should be used for everything else. That is why I have ranked the above as I have."
+"26","Po-wei Huang","N/A,master student at national taiwan university now. I'm a individual member at RISC-V Foundation. I couldn't vote,but I would like to contribute.","yes","Unified Abstract Interface,Instruction Feeding,Provide the choice of two interfaces","Providing the choice of two is more like a political compromise. 
+We should make the standard more technical instead of political.
+So, I wouldn't vote for that.
+For the reason why I vote for Unified Abstract Interface, my philosophy is that the standard should be clean and should not be implementation-specific.
+Instruction feeding is only a simple way to implement, and if other company wants to implement a sophisticated way, the standard should not be a restriction.
+Moreover, debugging without halt the core is very attracting, and this is hard to achieved by instruction feeding. The execution should be separated with the observation. 
+These are the reason why I vote for Unified approach.
+However, I achieve all the effort that both side put in.
+Thanks for your effort to make RISC-V better."
